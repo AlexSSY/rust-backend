@@ -8,6 +8,7 @@ class Config:
         load_dotenv()
 
         self.DB_NAME = os.getenv('DB_NAME', 'database.sqlite3')
+        self.SECRET_KEY = os.getenv('SECRET_KEY', 'secret')
 
 
 config = Config()

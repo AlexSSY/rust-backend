@@ -23,5 +23,6 @@ class OAuthAccount(Base):
     access_token: Mapped[Optional[str]] = mapped_column(String(255))
 
 
-def create_all(engine: Engine) -> None:
-    Base.metadata.create_all(engine)
+async def create_all(engine: Engine) -> None:
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)

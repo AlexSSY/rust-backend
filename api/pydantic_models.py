@@ -1,10 +1,15 @@
 from pydantic import BaseModel
 
 
-class LoginModel(BaseModel):
+class LoginRequest(BaseModel):
     username: str
     password: str
 
 
+class RegisterRequest(LoginRequest):
+    password_confirmation: str
+
+
 class LoginResponse(BaseModel):
-    msg: str
+    access_token: str
+    refresh_token: str

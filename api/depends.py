@@ -1,15 +1,15 @@
 from fastapi import Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.db import SessionLocal
+from api.db import AsyncSessionLocal
 
 
 async def get_session():
-    session = SessionLocal()
+    session = AsyncSessionLocal()
     try:
         yield session
     finally:
-        session.close()
+        await session.close()
 
 
-session_dep: Session = Depends(get_session)
+session_dep: AsyncSession = Depends(get_session)
